@@ -131,6 +131,18 @@ h2 {
   display: none;
 }
 
+.nav__menu--none {
+  display: none;
+}
+
+.nav__back--none {
+  display: none;
+}
+
+.nav__start--none {
+  display: none;
+}
+
 .link__yayoi-kusama--active {
   text-decoration: underline;
 }
