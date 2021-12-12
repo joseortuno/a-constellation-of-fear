@@ -123,6 +123,14 @@ h2 {
   display: none;
 }
 
+.result__point-three--none {
+  display: none;
+}
+
+.result__point-four--none {
+  display: none;
+}
+
 .link__yayoi-kusama--active {
   text-decoration: underline;
 }

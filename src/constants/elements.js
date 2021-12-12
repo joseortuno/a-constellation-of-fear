@@ -7,7 +7,9 @@ export const elements = {
   },
   result: {
     POINT_ONE: { selector: 'point-one', path: 'point-one' },
-    POINT_TWO: { selector: 'point-two', path: 'point-two' }
+    POINT_TWO: { selector: 'point-two', path: 'point-two' },
+    POINT_THREE: { selector: 'point-three', path: 'point-three' },
+    POINT_FOUR: { selector: 'point-four', path: 'point-four' }
 
   },
   frame: {
@@ -20,5 +22,5 @@ export const elements = {
 }
 
 export const { HOME, YAYOI_KUSAMA, NIGHT_OF_STARS, COLLECTION } = elements.section
-export const { POINT_ONE: RESULT_POINT_ONE, POINT_TWO: RESULT_POINT_TWO } = elements.result
+export const { POINT_ONE: RESULT_POINT_ONE, POINT_TWO: RESULT_POINT_TWO, POINT_THREE: RESULT_POINT_THREE, POINT_FOUR: RESULT_POINT_FOUR } = elements.result
 export const { CONSTELLATION, POINT_ONE, POINT_TWO, POINT_THREE, POINT_FOUR } = elements.frame
