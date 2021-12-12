@@ -3,7 +3,7 @@ import { goTo } from './utils/go-to'
 import { setSelectorLink, setSelectorSection, setSelectorResult, setSelectorFrame } from './utils/class-selector'
 import { ACTIVE, NO_VIEW } from './constants/modifiers'
 import { LINK, RESULT, SECTION } from './constants/blocks'
-import { HOME, YAYOI_KUSAMA, NIGHT_OF_STARS, COLLECTION, RESULT_POINT_ONE, RESULT_POINT_TWO, CONSTELLATION, POINT_ONE } from './constants/elements'
+import { HOME, YAYOI_KUSAMA, NIGHT_OF_STARS, COLLECTION, RESULT_POINT_ONE, RESULT_POINT_TWO, CONSTELLATION, POINT_ONE, POINT_TWO, POINT_THREE, POINT_FOUR } from './constants/elements'
 import { addFrameEffect, removeFrameEffect } from './utils/frame-effects'
 import { removeLinkEffect } from './utils/link-effects'
 import { addSectionEffect } from './utils/section-effects'
@@ -23,6 +23,9 @@ const $resultPointTwo = setSelectorResult(RESULT_POINT_TWO.selector)
 
 const $frameConstellation = setSelectorFrame(CONSTELLATION.selector)
 const $framePointOne = setSelectorFrame(POINT_ONE.selector)
+const $framePointTwo = setSelectorFrame(POINT_TWO.selector)
+const $framePointThree = setSelectorFrame(POINT_THREE.selector)
+const $framePointFour = setSelectorFrame(POINT_FOUR.selector)
 
 ;(function init () {
   $sectionYayoiKusama.classList.add(SECTION + YAYOI_KUSAMA.selector + NO_VIEW)
@@ -39,11 +42,34 @@ $linNightOfStars.addEventListener('click', (event) => goTo(event, NIGHT_OF_STARS
 $linkCollection.addEventListener('click', (event) => goTo(event, COLLECTION.path))
 $frameConstellation.addEventListener('mouseenter', () => addFrameEffect($frameConstellation, CONSTELLATION.selector))
 $frameConstellation.addEventListener('mouseout', () => removeFrameEffect($frameConstellation, CONSTELLATION.selector))
+
+/** */
+
 $framePointOne.addEventListener('mouseenter', () => {
   addFrameEffect($frameConstellation, CONSTELLATION.selector)
   addFrameEffect($framePointOne, POINT_ONE.selector)
 })
 $framePointOne.addEventListener('mouseout', () => removeFrameEffect($framePointOne, POINT_ONE.selector))
+
+$framePointTwo.addEventListener('mouseenter', () => {
+  addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  addFrameEffect($framePointTwo, POINT_TWO.selector)
+})
+$framePointTwo.addEventListener('mouseout', () => removeFrameEffect($framePointTwo, POINT_TWO.selector))
+
+$framePointThree.addEventListener('mouseenter', () => {
+  addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  addFrameEffect($framePointThree, POINT_THREE.selector)
+})
+$framePointThree.addEventListener('mouseout', () => removeFrameEffect($framePointThree, POINT_THREE.selector))
+
+$framePointFour.addEventListener('mouseenter', () => {
+  addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  addFrameEffect($framePointFour, POINT_FOUR.selector)
+})
+$framePointFour.addEventListener('mouseout', () => removeFrameEffect($framePointFour, POINT_FOUR.selector))
+
+/** */
 
 const resetViewContent = () => {
   addSectionEffect($sectionYayoiKusama, YAYOI_KUSAMA.selector)
