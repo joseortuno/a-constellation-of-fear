@@ -75,11 +75,12 @@ $framePointFour.addEventListener('click', (event) => {
 
 /** */
 
-$linkHome.addEventListener('click', (event) => {
-  event.preventDefault()
-  goTo(HOME.path)
-  addNavEffect($navBack, START.selector)
-})
+// $linkHome.addEventListener('click', (event) => {
+//   event.preventDefault()
+
+//   goTo(HOME.path)
+//   addNavEffect($navBack, START.selector)
+// })
 
 $navBack.addEventListener('click', () => {
   removeNavEffect($navBack, BACK.selector)
