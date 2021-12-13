@@ -6,7 +6,7 @@ import { HOME, YAYOI_KUSAMA, NIGHT_OF_STARS, COLLECTION, RESULT_POINT_ONE, RESUL
 import { removeLinkEffect, removeSectionEffect, removeResultEffect, addFrameEffect, removeFrameEffect, removeNavEffect, addNavEffect } from './utils/effects'
 import './style.css'
 
-const $linkHome = setSelectorLink(HOME.selector)
+// const $linkHome = setSelectorLink(HOME.selector)
 const $linkYayoiKusama = setSelectorLink(YAYOI_KUSAMA.selector)
 const $linNightOfStars = setSelectorLink(NIGHT_OF_STARS.selector)
 const $linkCollection = setSelectorLink(COLLECTION.selector)
