@@ -4,7 +4,7 @@ import { ACTIVE, NO_VIEW } from './constants/modifiers'
 import { LINK, NAV, RESULT, SECTION } from './constants/blocks'
 import { HOME, YAYOI_KUSAMA, NIGHT_OF_STARS, COLLECTION, RESULT_POINT_ONE, RESULT_POINT_TWO, RESULT_POINT_THREE, RESULT_POINT_FOUR, CONSTELLATION, POINT_ONE, POINT_TWO, POINT_THREE, POINT_FOUR, MENU, BACK, START } from './constants/elements'
 import { removeLinkEffect, removeSectionEffect, removeResultEffect, addFrameEffect, removeFrameEffect, removeNavEffect, addNavEffect } from './utils/effects'
-import '../style.css'
+import './style.css'
 
 const $linkHome = setSelectorLink(HOME.selector)
 const $linkYayoiKusama = setSelectorLink(YAYOI_KUSAMA.selector)
