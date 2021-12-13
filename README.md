@@ -2,6 +2,8 @@
 
 Concept web developed in javascript vanilla with Vite
 
+[A Constellation of Fear](https://joseortuno.github.io/a-constellation-of-fear)
+
 ![A Constellation of Fear](assets/a-constellation-of-fear.png)
 
 ## Run dev
