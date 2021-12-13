@@ -5,7 +5,7 @@ export const elements = {
     START: { selector: 'start' }
   },
   section: {
-    HOME: { selector: 'home', path: '/' },
+    HOME: { selector: 'home', path: 'a-constellation-of-fear/' },
     YAYOI_KUSAMA: { selector: 'yayoi-kusama', path: 'yayoi-kusama' },
     NIGHT_OF_STARS: { selector: 'night-of-stars', path: 'night-of-stars' },
     COLLECTION: { selector: 'collection', path: 'collection' }
