@@ -1,4 +1,3 @@
-
 import { goTo } from './utils/go-to'
 import { setSelectorLink, setSelectorSection, setSelectorResult, setSelectorFrame, setSelectorNav } from './utils/class-selector'
 import { ACTIVE, NO_VIEW } from './constants/modifiers'
@@ -45,21 +44,40 @@ const $framePointFour = setSelectorFrame(POINT_FOUR.selector)
   $navStart.classList.add(NAV + START.selector + NO_VIEW)
 })()
 
-$linkYayoiKusama.addEventListener('click', (event) => goTo(event, YAYOI_KUSAMA.path))
-$linNightOfStars.addEventListener('click', (event) => goTo(event, NIGHT_OF_STARS.path))
-$linkCollection.addEventListener('click', (event) => goTo(event, COLLECTION.path))
-
-$framePointOne.addEventListener('click', (event) => {
-  goTo(event, RESULT_POINT_ONE.path)
+$linkYayoiKusama.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(YAYOI_KUSAMA.path)
 })
-$framePointTwo.addEventListener('click', (event) => goTo(event, RESULT_POINT_TWO.path))
-$framePointThree.addEventListener('click', (event) => goTo(event, RESULT_POINT_THREE.path))
-$framePointFour.addEventListener('click', (event) => goTo(event, RESULT_POINT_FOUR.path))
+$linNightOfStars.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(NIGHT_OF_STARS.path)
+})
+$linkCollection.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(COLLECTION.path)
+})
+$framePointOne.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(RESULT_POINT_ONE.path)
+})
+$framePointTwo.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(RESULT_POINT_TWO.path)
+})
+$framePointThree.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(RESULT_POINT_THREE.path)
+})
+$framePointFour.addEventListener('click', (event) => {
+  event.preventDefault()
+  goTo(RESULT_POINT_FOUR.path)
+})
 
 /** */
 
 $linkHome.addEventListener('click', (event) => {
-  goTo(event, HOME.path)
+  event.preventDefault()
+  goTo(HOME.path)
   addNavEffect($navBack, START.selector)
 })
 
@@ -75,44 +93,64 @@ $navStart.addEventListener('click', () => {
 
 /** */
 
-const isNotResult = () => {
+const isActive = (resultPathname) => {
   const { pathname } = window.location
-
-  if (pathname.includes(RESULT_POINT_ONE.path)) return false
-  if (pathname.includes(RESULT_POINT_TWO.path)) return false
-  if (pathname.includes(RESULT_POINT_THREE.path)) return false
-  if (pathname.includes(RESULT_POINT_FOUR.path)) return false
-  return true
+  return pathname.includes(resultPathname)
 }
 
-$frameConstellation.addEventListener('mouseenter', () => addFrameEffect($frameConstellation, CONSTELLATION.selector))
+const isResult = () => {
+  const { pathname } = window.location
+
+  const resultsPath = [
+    RESULT_POINT_ONE.path,
+    RESULT_POINT_TWO.path,
+    RESULT_POINT_THREE.path,
+    RESULT_POINT_FOUR.path
+  ]
+
+  return resultsPath.some(pathname)
+}
+
+/** */
+
+$frameConstellation.addEventListener('mouseenter', () => {
+  !isResult && addFrameEffect($frameConstellation, CONSTELLATION.selector)
+})
 $frameConstellation.addEventListener('mouseout', () => {
-  removeFrameEffect($frameConstellation, CONSTELLATION.selector)
+  !isResult && removeFrameEffect($frameConstellation, CONSTELLATION.selector)
 })
 
 $framePointOne.addEventListener('mouseenter', () => {
-  addFrameEffect($frameConstellation, CONSTELLATION.selector)
-  addFrameEffect($framePointOne, POINT_ONE.selector)
+  !isActive(RESULT_POINT_ONE.path) && addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  !isActive(RESULT_POINT_ONE.path) && addFrameEffect($framePointOne, POINT_ONE.selector)
 })
-$framePointOne.addEventListener('mouseout', () => removeFrameEffect($framePointOne, POINT_ONE.selector))
+$framePointOne.addEventListener('mouseout', () => {
+  !isActive(RESULT_POINT_ONE.path) && removeFrameEffect($framePointOne, POINT_ONE.selector)
+})
 
 $framePointTwo.addEventListener('mouseenter', () => {
-  addFrameEffect($frameConstellation, CONSTELLATION.selector)
-  addFrameEffect($framePointTwo, POINT_TWO.selector)
+  !isActive(RESULT_POINT_TWO.path) && addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  !isActive(RESULT_POINT_TWO.path) && addFrameEffect($framePointTwo, POINT_TWO.selector)
 })
-$framePointTwo.addEventListener('mouseout', () => removeFrameEffect($framePointTwo, POINT_TWO.selector))
+$framePointTwo.addEventListener('mouseout', () => {
+  !isActive(RESULT_POINT_TWO.path) && removeFrameEffect($framePointTwo, POINT_TWO.selector)
+})
 
 $framePointThree.addEventListener('mouseenter', () => {
-  addFrameEffect($frameConstellation, CONSTELLATION.selector)
-  addFrameEffect($framePointThree, POINT_THREE.selector)
+  !isActive(RESULT_POINT_THREE.path) && addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  !isActive(RESULT_POINT_THREE.path) && addFrameEffect($framePointThree, POINT_THREE.selector)
 })
-$framePointThree.addEventListener('mouseout', () => removeFrameEffect($framePointThree, POINT_THREE.selector))
+$framePointThree.addEventListener('mouseout', () => {
+  !isActive(RESULT_POINT_THREE.path) && removeFrameEffect($framePointThree, POINT_THREE.selector)
+})
 
 $framePointFour.addEventListener('mouseenter', () => {
-  addFrameEffect($frameConstellation, CONSTELLATION.selector)
-  addFrameEffect($framePointFour, POINT_FOUR.selector)
+  !isActive(RESULT_POINT_FOUR.path) && addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  !isActive(RESULT_POINT_FOUR.path) && addFrameEffect($framePointFour, POINT_FOUR.selector)
 })
-$framePointFour.addEventListener('mouseout', () => removeFrameEffect($framePointFour, POINT_FOUR.selector))
+$framePointFour.addEventListener('mouseout', () => {
+  !isActive(RESULT_POINT_FOUR.path) && removeFrameEffect($framePointFour, POINT_FOUR.selector)
+})
 
 /** */
 
@@ -127,6 +165,13 @@ const resetViewContent = () => {
   removeResultEffect($resultPointFour, RESULT_POINT_FOUR.selector)
 }
 
+const resetViewFrame = () => {
+  removeFrameEffect($framePointOne, POINT_ONE.selector)
+  removeFrameEffect($framePointTwo, POINT_TWO.selector)
+  removeFrameEffect($framePointThree, POINT_THREE.selector)
+  removeFrameEffect($framePointFour, POINT_FOUR.selector)
+}
+
 const resetViewUnderlineLinks = () => {
   removeLinkEffect($linkYayoiKusama, YAYOI_KUSAMA.selector)
   removeLinkEffect($linNightOfStars, NIGHT_OF_STARS.selector)
@@ -139,47 +184,59 @@ const resetViewNav = () => {
   removeNavEffect($navStart, START.selector)
 }
 
-const navigation = (block, element) => {
+const resetAllView = () => {
   resetViewContent()
   resetViewUnderlineLinks()
   resetViewNav()
+  resetViewFrame()
+}
 
-  if (element !== HOME.selector && block === SECTION) {
-    const $section = setSelectorSection(element)
-    const $link = setSelectorLink(element)
+/** */
 
-    addNavEffect($navMenu, MENU.selector)
+const goToSections = (selector) => {
+  resetAllView()
 
-    $section.classList.remove(block + element + NO_VIEW)
-    block === SECTION && $link.classList.add(LINK + element + ACTIVE)
-  }
-  if (element !== HOME.selector && block === RESULT) {
-    const $result = setSelectorResult(element)
-    const $frame = setSelectorFrame(element)
+  const $section = setSelectorSection(selector)
+  const $link = setSelectorLink(selector)
 
-    addNavEffect($navBack, BACK.selector)
-    addFrameEffect($frameConstellation, CONSTELLATION.selector)
-    addFrameEffect($frame, element)
+  addNavEffect($navMenu, MENU.selector)
 
-    $result.classList.remove(block + element + NO_VIEW)
-  }
-  if (element === HOME.selector) {
-    addNavEffect($navStart, START.selector)
-  }
+  $section.classList.remove(SECTION + selector + NO_VIEW)
+  SECTION && $link.classList.add(LINK + selector + ACTIVE)
+}
+
+const goToResults = (selector) => {
+  resetAllView()
+
+  const $result = setSelectorResult(selector)
+  const $frame = setSelectorFrame(selector)
+
+  addNavEffect($navBack, BACK.selector)
+  addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  addFrameEffect($frame, selector)
+
+  $result.classList.remove(RESULT + selector + NO_VIEW)
+}
+
+const goToHome = () => {
+  resetAllView()
+
+  addNavEffect($navStart, START.selector)
 }
 
 const listener = () => {
   const { pathname } = window.location
 
-  pathname.includes(HOME.path) && navigation(SECTION, HOME.selector)
-  pathname.includes(YAYOI_KUSAMA.path) && navigation(SECTION, YAYOI_KUSAMA.selector)
-  pathname.includes(NIGHT_OF_STARS.path) && navigation(SECTION, NIGHT_OF_STARS.selector)
-  pathname.includes(COLLECTION.path) && navigation(SECTION, COLLECTION.selector)
+  pathname.includes(HOME.path) && goToHome()
 
-  pathname.includes(RESULT_POINT_ONE.path) && navigation(RESULT, RESULT_POINT_ONE.selector)
-  pathname.includes(RESULT_POINT_TWO.path) && navigation(RESULT, RESULT_POINT_TWO.selector)
-  pathname.includes(RESULT_POINT_THREE.path) && navigation(RESULT, RESULT_POINT_THREE.selector)
-  pathname.includes(RESULT_POINT_FOUR.path) && navigation(RESULT, RESULT_POINT_FOUR.selector)
+  if (pathname.includes(YAYOI_KUSAMA.path)) return goToSections(YAYOI_KUSAMA.selector)
+  if (pathname.includes(NIGHT_OF_STARS.path)) return goToSections(NIGHT_OF_STARS.selector)
+  if (pathname.includes(COLLECTION.path)) return goToSections(COLLECTION.selector)
+
+  if (pathname.includes(RESULT_POINT_ONE.path)) return goToResults(RESULT_POINT_ONE.selector)
+  if (pathname.includes(RESULT_POINT_TWO.path)) return goToResults(RESULT_POINT_TWO.selector)
+  if (pathname.includes(RESULT_POINT_THREE.path)) return goToResults(RESULT_POINT_THREE.selector)
+  if (pathname.includes(RESULT_POINT_FOUR.path)) return goToResults(RESULT_POINT_FOUR.selector)
 }
 listener()
 
