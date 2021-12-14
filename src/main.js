@@ -108,17 +108,20 @@ const isResult = () => {
     RESULT_POINT_THREE.path,
     RESULT_POINT_FOUR.path
   ]
+  const paths = pathname.split('/')
 
-  return resultsPath.some(pathname)
+  return resultsPath.includes(paths[2])
 }
 
 /** */
 
 $frameConstellation.addEventListener('mouseenter', () => {
-  !isResult && addFrameEffect($frameConstellation, CONSTELLATION.selector)
+  console.log(isResult())
+  !isResult() && addFrameEffect($frameConstellation, CONSTELLATION.selector)
 })
 $frameConstellation.addEventListener('mouseout', () => {
-  !isResult && removeFrameEffect($frameConstellation, CONSTELLATION.selector)
+  console.log(isResult())
+  !isResult() && removeFrameEffect($frameConstellation, CONSTELLATION.selector)
 })
 
 $framePointOne.addEventListener('mouseenter', () => {
@@ -201,6 +204,7 @@ const goToSections = (selector) => {
   const $link = setSelectorLink(selector)
 
   addNavEffect($navMenu, MENU.selector)
+  removeFrameEffect($frameConstellation, CONSTELLATION.selector)
 
   $section.classList.remove(SECTION + selector + NO_VIEW)
   SECTION && $link.classList.add(LINK + selector + ACTIVE)
