@@ -1,12 +1,13 @@
 import { goTo } from './utils/go-to'
-import { setSelectorLink, setSelectorSection, setSelectorResult, setSelectorFrame, setSelectorNav } from './utils/class-selector'
+import { setSelectorLink, setSelectorSection, setSelectorResult, setSelectorFrame, setSelectorNav, setSelectorIntro } from './utils/class-selector'
 import { ACTIVE, NO_VIEW } from './constants/modifiers'
-import { LINK, NAV, RESULT, SECTION } from './constants/blocks'
+import { INTRO, LINK, NAV, RESULT, SECTION } from './constants/blocks'
 import { HOME, YAYOI_KUSAMA, NIGHT_OF_STARS, COLLECTION, RESULT_POINT_ONE, RESULT_POINT_TWO, RESULT_POINT_THREE, RESULT_POINT_FOUR, CONSTELLATION, POINT_ONE, POINT_TWO, POINT_THREE, POINT_FOUR, MENU, BACK, START } from './constants/elements'
 import { removeLinkEffect, removeSectionEffect, removeResultEffect, addFrameEffect, removeFrameEffect, removeNavEffect, addNavEffect } from './utils/effects'
 import './style.css'
 
 // const $linkHome = setSelectorLink(HOME.selector)
+const $intro = setSelectorIntro()
 const $linkYayoiKusama = setSelectorLink(YAYOI_KUSAMA.selector)
 const $linNightOfStars = setSelectorLink(NIGHT_OF_STARS.selector)
 const $linkCollection = setSelectorLink(COLLECTION.selector)
@@ -116,11 +117,9 @@ const isResult = () => {
 /** */
 
 $frameConstellation.addEventListener('mouseenter', () => {
-  console.log(isResult())
   !isResult() && addFrameEffect($frameConstellation, CONSTELLATION.selector)
 })
 $frameConstellation.addEventListener('mouseout', () => {
-  console.log(isResult())
   !isResult() && removeFrameEffect($frameConstellation, CONSTELLATION.selector)
 })
 
@@ -208,6 +207,7 @@ const goToSections = (selector) => {
 
   $section.classList.remove(SECTION + selector + NO_VIEW)
   SECTION && $link.classList.add(LINK + selector + ACTIVE)
+  $intro.classList.remove(INTRO + NO_VIEW)
 }
 
 const goToResults = (selector) => {
@@ -221,6 +221,7 @@ const goToResults = (selector) => {
   addFrameEffect($frame, selector)
 
   $result.classList.remove(RESULT + selector + NO_VIEW)
+  $intro.classList.add(INTRO + NO_VIEW)
 }
 
 const goToHome = () => {
