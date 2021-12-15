@@ -131,7 +131,7 @@ video {
   width: 30rem;
   height: 30rem;
   background: var(--white);
-  border: 4.75rem solid var(--white);
+  border: 3rem solid var(--white);
   border-radius: 50%;
   transition: 0.5s;
 }
