@@ -12,10 +12,14 @@
   --black: #13100f;
 }
 
+html,
+button {
+  font-family: "Space Mono", monospace;
+}
+
 html {
   box-sizing: border-box;
   font-size: 13px;
-  font-family: "Space Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--white);
